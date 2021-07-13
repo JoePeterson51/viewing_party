@@ -3,8 +3,11 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#new'
   post '/users', to: 'users#create'
-  get '/users', to: 'users#show'
-  get '/dashboard', to: 'users#show'
+  get '/users', to: 'user/dashboard#index'
+
+  namespace :user do
+    resources :dashboard, only: [:index]
+  end
 
   get '/login', to:'sessions#new'
   post '/login', to:'sessions#create'
@@ -16,5 +19,5 @@ Rails.application.routes.draw do
 
   get '/movies', to: 'movies#index'
   post '/movies', to: 'movies#search'
-  get 'movies/show', to: 'movies#show'
+  get '/movies/show', to: 'movies#show'
 end

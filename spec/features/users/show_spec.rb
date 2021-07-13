@@ -21,7 +21,7 @@ RSpec.describe 'dashboard' do
 
       click_on "Log in"
 
-      expect(current_path).to eq("/dashboard")
+      expect(current_path).to eq(user_dashboard_index_path)
       expect(page).to have_content("Welcome, person@ex.com!")
       expect(page).to have_button("Discover Movies")
     end

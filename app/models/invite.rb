@@ -1,4 +1,4 @@
 class Invite < ApplicationRecord
   belongs_to :user
-  belongs_to :viewing_party
+  belongs_to :movie_party
 end

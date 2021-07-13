@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'relationships' do
-    it { should have_many(:viewing_parties)}
+    it { should have_many(:movie_parties)}
     it { should have_many(:invites)}
+    it { should have_many(:movie_parties).through(:invites)}
     it { should have_many(:friendships)}
     it { should have_many(:friends).through(:friendships)}
     it { should have_many(:inverse_friendships).class_name('Friendship').with_foreign_key('friend_id')}

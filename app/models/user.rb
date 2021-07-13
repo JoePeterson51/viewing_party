@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :viewing_parties
+  has_many :movie_parties
   has_many :invites
+  has_many :movie_parties, through: :invites
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"

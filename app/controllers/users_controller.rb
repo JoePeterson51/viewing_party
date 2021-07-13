@@ -16,21 +16,10 @@ class UsersController < ApplicationController
     if new_user.save
       session[:user_id] = new_user.id
       flash[:success] = "Welcome, #{new_user.username}!"
-      redirect_to dashboard_path
+      redirect_to user_dashboard_index_path
     else
       flash[:alert] = "Must fill out all fields/confirm password"
       render :new
-    end
-  end
-
-  def show
-    friend_ids = current_user.friendships.select(:friend_id).distinct.pluck(:friend_id)
-    @friendships = User.find(friend_ids)
-    if params[:search_by_username] != ""
-      @user = User.find_by(username: params[:search_by_username])
-    else
-      flash[:alert] = "User not found."
-      redirect to dashboard_path
     end
   end
 

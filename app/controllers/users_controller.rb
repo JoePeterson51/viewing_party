@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   def show
     friend_ids = current_user.friendships.select(:friend_id).distinct.pluck(:friend_id)
     @friendships = User.find(friend_ids)
-    users = User.all
     if params[:search_by_username] != ""
       @user = User.find_by(username: params[:search_by_username])
     else

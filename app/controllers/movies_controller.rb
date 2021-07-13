@@ -1,11 +1,13 @@
 class MoviesController < ApplicationController
   def index
-    url = "https://api.themoviedb.org/3/discover/movie?api_key=#{ENV['TMDB_API_KEY']}"
-    response = Faraday.get(url)
-    json = JSON.parse(response.body, symbolize_names: true)
+    @movies = MovieFacade.top_movies_list
   end
 
   def search
+    @movies = MovieFacade.movie_search_list(params[:search])
+  end
+
+  def show
 
   end
 end

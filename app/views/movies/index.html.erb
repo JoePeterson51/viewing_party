@@ -1,0 +1,6 @@
+<h1>Top 40 Movies</h1>
+<% @movies.each do |movie| %>
+  <ul class="movie"><%= link_to "#{movie.title}", "/movie/show", params: {id: movie.id} %>
+  <li><%= movie.vote_avg%></li>
+  </ul>
+  <% end %>

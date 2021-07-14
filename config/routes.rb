@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   get '/movies', to: 'movies#index'
   post '/movies', to: 'movies#search'
-  get '/movies/show', to: 'movies#show'
+  get '/movie/show', to: 'movies#show'
 end

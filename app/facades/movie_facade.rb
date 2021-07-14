@@ -20,10 +20,11 @@ class MovieFacade
 
   def self.movie_cast(id)
     json = ImdbService.movie_cast_search(id)
-    json[:cast].map do |json_cast|
-      if json_cast[:known_for_department] == "Acting"
-        MovieCast.new(json_cast)
-      end
+    actors = json[:cast].find_all do |json_cast|
+      json_cast[:known_for_department] == "Acting"
+    end
+    actors.map do |actor|
+      MovieCast.new(actor)
     end
   end
 

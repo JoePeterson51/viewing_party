@@ -19,7 +19,9 @@ RSpec.describe 'movies show' do
     it 'shows the movies details' do
       VCR.use_cassette "movie_show" do
         click_on "The Tomorrow War"
+        save_and_open_page
         expect(page).to have_content("The Tomorrow War")
+        expect(page).to have_content("Chris Pratt")
       end
     end
   end

@@ -23,4 +23,22 @@ class ImdbService
 
     json_1[:results] + json_2[:results]
   end
+
+  def self.movie_details_search(id)
+    url = "https://api.themoviedb.org/3/movie/#{id}?api_key=#{ENV['TMDB_API_KEY']}"
+    response = Faraday.get(url)
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.movie_cast_search(id)
+    url = "https://api.themoviedb.org/3/movie/#{id}/credits?api_key=#{ENV['TMDB_API_KEY']}"
+    response = Faraday.get(url)
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.movie_review_search(id)
+    url = "https://api.themoviedb.org/3/movie/#{id}/reviews?api_key=#{ENV['TMDB_API_KEY']}"
+    response = Faraday.get(url)
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
 end

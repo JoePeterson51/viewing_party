@@ -16,10 +16,12 @@ RSpec.describe 'movies show' do
   end
 
   describe 'movies show' do
-    xit 'shows the movies details' do
-      click_on "The Tomorrow War"
+    it 'shows the movies details' do
       VCR.use_cassette "movie_show" do
-        expect(current_path).to eq('/movies/show')
+        click_on "The Tomorrow War"
+        save_and_open_page
+        expect(page).to have_content("The Tomorrow War")
+        expect(page).to have_content("Chris Pratt")
       end
     end
   end

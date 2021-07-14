@@ -1,0 +1,37 @@
+<h2><%= @movie_details.title %></h2>
+<%= button_to "Create Viewing Party!", '/movie_party/new' %>
+<p>Rating: <%= @movie_details.vote_avg %></p>
+<p>Length: <%= @movie_details.runtime / 60 %> Hours <%= @movie_details.runtime % 60 %> Minutes</p>
+<br>
+<p>Genere(s): <% @movie_details.genres.each do |genre| %>
+  <% if genre == @movie_details.genres.last %>
+    <%= genre[:name] %>
+  <% else %>
+    <%= genre[:name] << ',' %>
+  <% end %>
+<% end %></p>
+<br>
+<h2>Summary</h2>
+<p><%= @movie_details.summary %></p>
+<br>
+<h2>Cast Members</h2>
+<br>
+<% @movie_cast.each do |cast| %>
+  <p>Character: <%= cast.character %></p>
+  <p>Actor: <%= cast.name %></p>
+  <br>
+<% end %>
+
+<h2>Reviews</h2>
+<p>Total Reviews: <%= @movie_reviews.count %></p>
+<br>
+<% @movie_reviews.each do |review| %>
+  <p>Username: <%= review.author_details[:username] %></p>
+  <% if review.author_details[:rating].nil? %>
+    <p>Rating: No Rating</p>
+  <% else %>
+    <p>Rating: <%= review.author_details[:rating] %></p>
+  <% end %>
+  <p><%= review.review %></p>
+  <br>
+<% end %>

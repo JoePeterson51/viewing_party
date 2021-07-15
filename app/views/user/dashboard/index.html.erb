@@ -30,4 +30,13 @@
 <% end %>
 </div>
 <h2><%= "Viewing Parties" %></h2>
-<li><%= 'party' %></li>
+
+<% movies = MovieParty.all.find_all do |movies| %>
+  <% movies.user_id == current_user.id %>
+<% end %>
+<% movies.each do |movie| %>
+  <p>Date: <%= movie.date %></p>
+  <p>Time: <%= movie.start_time %></p>
+  <br>
+  <br>
+<% end %>

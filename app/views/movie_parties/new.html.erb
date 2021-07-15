@@ -1,0 +1,21 @@
+<h1><%=@movie_details.title%></h1>
+<h2>Please Enter Viewing Party Information Here</h2>
+<% id = @movie_details.id %>
+<% title = @movie_details.title %>
+<%= form_with url:"/movie_party/new?movie_id=#{id}&title=#{title}", method: :post, local: true do |f| %>
+    <%= f.label :duration, "Duration In Minutes:" %>
+    <%= f.text_field :duration, value: "#{@movie_details.runtime}" %>
+    <br>
+    <br>
+    <%= f.label :time, "Time:" %>
+    <%= f.datetime_select :time, ampm: true  %>
+    <br>
+    <br>
+
+    <% current_user.friends.each do |friend| %>
+      <%= f.label :friend, "#{friend.username}:" %>
+      <%= f.check_box :friend, {:multiple => true}, friend.id, nil %>
+    <br>
+    <% end %>
+    <%= f.submit "Create" %>
+<% end %>

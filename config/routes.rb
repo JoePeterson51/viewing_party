@@ -23,5 +23,4 @@ Rails.application.routes.draw do
 
   get '/movie_party/new', to: 'movie_parties#new'
   post '/movie_party/new', to: 'movie_parties#create'
-
 end
